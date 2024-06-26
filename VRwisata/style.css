@@ -1,0 +1,192 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+
+.nav{
+    color: rgb(255, 255, 255);
+    display: flex;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    background-color: rgb(15, 15, 15);
+    position: fixed;
+    width: 100%;
+    z-index: 1;
+}
+
+.nav a{
+    color: rgb(255, 255, 255);
+}
+
+.nav li{
+    padding: 5px;
+}
+ 
+
+.nav li:hover{
+    background-color: rgb(16, 17, 16);
+}
+
+
+.data-list{
+
+    margin-left: 40%;
+   
+}
+
+.data-list li{
+display: inline-block;
+margin-left: 50px;
+}
+.fa-chevron-down{
+    transform: rotate(0);
+}
+.wisata:hover .fa-chevron-down{
+    transform: rotate(-90deg);
+    transition: 300ms;
+}
+.logo{
+   
+    margin-left: 30px;
+    
+}
+
+.list{
+   display: none;
+    position: absolute;
+   
+   padding-top: 20px;
+   padding-bottom: 20px;
+   padding-right: 20px;
+}
+
+
+.list li{
+    display: block;
+    margin-bottom: 10px;
+    color: whitesmoke;
+}
+
+.data-list a{
+    text-decoration: none;
+}
+.wisata:hover .list{
+   display: block;
+    
+}
+
+/*=============header===========*/
+.header{
+    display: flex;
+    margin-bottom: 100px;
+   
+}
+
+.des-header{
+ 
+    width: 200%;
+    margin-left: 290px;
+    
+    
+}
+
+.des-header h1{
+ 
+ font-size: 6rem;
+ width: 200%;
+ color: whitesmoke;
+ margin-top: 150px;
+ justify-content: center;
+ 
+
+}
+/*
+.gambar{
+    width: 45%;
+    height: 100vh;
+
+}
+
+.gambar img{
+    width: 100%;
+    height: 50%;
+}
+*/
+/* bg card */
+.bg-card{
+    
+    
+    padding-bottom: 50vh;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    flex-wrap: wrap;
+}
+
+.bg-card a{
+    text-decoration: none;
+}
+
+.card{
+    
+   width: 250px;
+   height: 290px;
+   margin: auto;
+   margin-left: 20px;
+   margin-bottom: 50px;
+}
+.card:hover{
+    box-shadow: 20px 10px 50px whitesmoke;
+    transition: 300ms;
+}
+
+.gambar-wisata{
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    
+}
+.gambar-wisata img{
+    width: 100%;
+    height: 100%;
+    transition: 1s;
+}
+.des-card{
+    padding: 5px;
+    padding-left: 15px;
+    padding-bottom: 15px;
+}
+.des-card h2{
+    color: whitesmoke;
+    margin-bottom: 10px;
+}
+.des-card p{
+    color: whitesmoke;
+    line-height: 25px;
+    transition: 2s;
+
+}
+
+.card:hover img{
+   transform: scale(1.5); 
+}
+
+
+/* bg footer */
+.bg-footer{
+  
+    height: 4vh;
+    background-color: black;
+    text-align: center;
+    color: aliceblue;
+    padding-top: 4vh;
+}
+/* bg footer selesai */
+
+/* backround */
+
+body{
+    background-image:url('https://static.promediateknologi.id/crop/0x0:0x0/0x0/webp/photo/p2/11/2023/09/22/WhatsApp-Image-2023-08-08-at-112907-PM-1898349198.jpg');
+    background-size: cover;
+}

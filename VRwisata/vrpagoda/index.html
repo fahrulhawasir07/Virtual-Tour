@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--projecttitle--><title>pagoda</title><!--projecttitle-end-->
+		<!--projectdescription--><meta name="description" content="New 3Sixty Virtual Tour Project"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 0.25em;
+				height: 0.25em;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: #2c3643; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #0d9e59; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #00e075; 
+			}
+
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color; black;
+			}
+
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
+
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 3em;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+		</style>
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+    	
+		
+		
+		<!--customhtml--><div class='customhotspot' id='PANO_20230925_102642'></div><div class='customhotspot' id='PANO1'></div><div class='customhotspot' id='jalansamping'><div onclick='chclickinfospotjalansamping2();' id='infospotjalansamping2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='simpangbelakang'><div onclick='chclickinfospotsimpangbelakang4();' id='infospotsimpangbelakang4' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='Ruang2'></div><div class='customhotspot' id='Ruang3'></div><div class='customhotspot' id='jalanbelakang'></div><div class='customhotspot' id='Ruang4'></div><div class='customhotspot' id='belakang'></div><!--customhtml-end-->
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+		</div>
+
+		<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
+    			<!--loadingtext-->Loading...<!--loadingtext-end-->
+    		</div>
+    	</div>
+		
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
+var PANO_20230925_102642 = new PANOLENS.ImagePanorama( "panoramas/PANO_20230925_102642.jpg" );
+			PANO_20230925_102642.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			PANO_20230925_102642.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			PANO_20230925_102642.addEventListener('click', function(e){
+			});
+
+var infospotPANO_20230925_1026420 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotPANO_20230925_1026420.position.set( -4968.89, -401.72, 278.30 );
+					PANO_20230925_102642.add(infospotPANO_20230925_1026420);
+infospotPANO_20230925_1026420.addEventListener('click', function(){
+ChangePanorama('PANO1');
+});
+viewer.add( PANO_20230925_102642 );
+var PANO1 = new PANOLENS.ImagePanorama( "panoramas/PANO1.jpg" );
+			PANO1.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			PANO1.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			PANO1.addEventListener('click', function(e){
+			});
+
+var infospotPANO10 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotPANO10.position.set( 4949.75, 645.40, 93.04 );
+					PANO1.add(infospotPANO10);
+infospotPANO10.addEventListener('click', function(){
+ChangePanorama('PANO_20230925_102642');
+ChangePanorama('PANO_20230925_102642');
+});
+var infospotPANO11 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotPANO11.position.set( 3558.47, 135.55, 3495.39 );
+					PANO1.add(infospotPANO11);
+infospotPANO11.addEventListener('click', function(){
+ChangePanorama('jalansamping');
+ChangePanorama('jalansamping');
+});
+viewer.add( PANO1 );
+var jalansamping = new PANOLENS.ImagePanorama( "panoramas/jalansamping.jpg" );
+			jalansamping.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			jalansamping.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			jalansamping.addEventListener('click', function(e){
+			});
+
+var infospotjalansamping0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotjalansamping0.position.set( -4928.52, 94.87, -777.24 );
+					jalansamping.add(infospotjalansamping0);
+infospotjalansamping0.addEventListener('click', function(){
+ChangePanorama('PANO1');
+});
+var infospotjalansamping1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotjalansamping1.position.set( 4972.60, 378.47, -239.12 );
+					jalansamping.add(infospotjalansamping1);
+infospotjalansamping1.addEventListener('click', function(){
+ChangePanorama('simpangbelakang');
+});
+var infospotjalansamping2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotjalansamping2.position.set( 4537.87, 345.43, 2062.43 );
+					infospotjalansamping2.visible = false;
+					jalansamping.add(infospotjalansamping2);
+infospotjalansamping2.addEventListener('click', function(){
+var deskripsi = "Patung-patung Lohan berwarna emas tersebut dibuat dengan cita rasa seni yang begitu tinggi dengan gestur yang mewakili karakternya masing-masing. Ke-18 patung Lohan tersebut antara lain, Nantimiloto, Angida, Pindola, Pantha The Elder, Asita, Nagasane, Pantha The Younger, Rahula, Gobaka, Nakula, Vanavasa, Fajraputra, Bodhidarma, Katikam Nadimitra, Kanaka The Bharadavaja, The Vatsa, dan Pindola The Bharadavaja. Patung-patung Lohan tersebut menjadi sangat menarik dengan latar belakang keindahan Gunung Lokon yang memukau.";
+alert(deskripsi);
+});
+viewer.add( jalansamping );
+var simpangbelakang = new PANOLENS.ImagePanorama( "panoramas/simpangbelakang.jpg" );
+			simpangbelakang.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			simpangbelakang.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			simpangbelakang.addEventListener('click', function(e){
+			});
+
+var infospotsimpangbelakang0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsimpangbelakang0.position.set( 1466.27, 203.47, 4768.14 );
+					simpangbelakang.add(infospotsimpangbelakang0);
+infospotsimpangbelakang0.addEventListener('click', function(){
+ChangePanorama('Ruang2');
+});
+var infospotsimpangbelakang1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsimpangbelakang1.position.set( 4946.05, 611.91, -239.25 );
+					simpangbelakang.add(infospotsimpangbelakang1);
+infospotsimpangbelakang1.addEventListener('click', function(){
+ChangePanorama('Ruang3');
+});
+var infospotsimpangbelakang2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsimpangbelakang2.position.set( 4235.42, 172.37, 2633.41 );
+					simpangbelakang.add(infospotsimpangbelakang2);
+infospotsimpangbelakang2.addEventListener('click', function(){
+ChangePanorama('jalanbelakang');
+});
+var infospotsimpangbelakang3 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotsimpangbelakang3.position.set( -3532.60, -254.95, -3514.63 );
+					simpangbelakang.add(infospotsimpangbelakang3);
+infospotsimpangbelakang3.addEventListener('click', function(){
+ChangePanorama('jalansamping');
+});
+var infospotsimpangbelakang4 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotsimpangbelakang4.position.set( 3516.80, -751.09, 3462.84 );
+					infospotsimpangbelakang4.visible = false;
+					simpangbelakang.add(infospotsimpangbelakang4);
+infospotsimpangbelakang4.addEventListener('click', function(){
+var deskripsi = "Pada kolam yang dipercaya mampu mendatangkan keberuntungan dan rejeki ini, dihiasi dengan patung katak raksasa berkepala naga yang menyimbolkan keberuntungan. Pada sisi-sisi kolam terdapat prasasti yang bertuliskan segala kebaikan duniawi, seperti panjang umur, pangkat, harta, keberuntungan, dan bahagia. Umat Buddha yang datang biasanya akan melemparkan koin ke dalam kolam sebelum kemudian memanjatkan doa dan permohonan.";alert(deskripsi);
+});
+viewer.add( simpangbelakang );
+var Ruang2 = new PANOLENS.ImagePanorama( "panoramas/Ruang2.jpg" );
+			Ruang2.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ruang2.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ruang2.addEventListener('click', function(e){
+			});
+
+var infospotRuang20 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotRuang20.position.set( -4883.25, -988.05, 271.66 );
+					Ruang2.add(infospotRuang20);
+infospotRuang20.addEventListener('click', function(){
+ChangePanorama('simpangbelakang');
+});
+viewer.add( Ruang2 );
+var Ruang3 = new PANOLENS.ImagePanorama( "panoramas/Ruang3.jpg" );
+			Ruang3.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ruang3.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ruang3.addEventListener('click', function(e){
+			});
+
+var infospotRuang30 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotRuang30.position.set( -4950.23, -273.71, -595.31 );
+					Ruang3.add(infospotRuang30);
+infospotRuang30.addEventListener('click', function(){
+ChangePanorama('simpangbelakang');
+});
+viewer.add( Ruang3 );
+var jalanbelakang = new PANOLENS.ImagePanorama( "panoramas/jalanbelakang.jpg" );
+			jalanbelakang.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			jalanbelakang.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			jalanbelakang.addEventListener('click', function(e){
+			});
+
+var infospotjalanbelakang0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotjalanbelakang0.position.set( -2206.72, 56.59, -4477.07 );
+					jalanbelakang.add(infospotjalanbelakang0);
+infospotjalanbelakang0.addEventListener('click', function(){
+ChangePanorama('simpangbelakang');
+});
+var infospotjalanbelakang1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotjalanbelakang1.position.set( 4984.57, 389.73, -2.30 );
+					jalanbelakang.add(infospotjalanbelakang1);
+infospotjalanbelakang1.addEventListener('click', function(){
+ChangePanorama('Ruang4');
+});
+var infospotjalanbelakang2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotjalanbelakang2.position.set( 2811.69, -93.63, 4123.33 );
+					jalanbelakang.add(infospotjalanbelakang2);
+infospotjalanbelakang2.addEventListener('click', function(){
+ChangePanorama('belakang');
+});
+viewer.add( jalanbelakang );
+var Ruang4 = new PANOLENS.ImagePanorama( "panoramas/Ruang4.jpg" );
+			Ruang4.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			Ruang4.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			Ruang4.addEventListener('click', function(e){
+			});
+
+var infospotRuang40 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotRuang40.position.set( -4994.05, 17.93, 100.05 );
+					Ruang4.add(infospotRuang40);
+infospotRuang40.addEventListener('click', function(){
+ChangePanorama('jalanbelakang');
+});
+viewer.add( Ruang4 );
+var belakang = new PANOLENS.ImagePanorama( "panoramas/belakang.jpg" );
+			belakang.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			belakang.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			belakang.addEventListener('click', function(e){
+			});
+
+var infospotbelakang0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotbelakang0.position.set( -4908.45, 309.57, 850.07 );
+					belakang.add(infospotbelakang0);
+infospotbelakang0.addEventListener('click', function(){
+ChangePanorama('belakang');
+ChangePanorama('jalanbelakang');
+});
+viewer.add( belakang );
+$(document).ready(function(){ ChangePanorama('PANO1'); });
+
+/*panoramas-end*/
+            
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 99%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+			
+			
+			
+			//Update Callback
+			viewer.addUpdateCallback(function(){
+				
+				/*viewerupdatecallback*/
+if(viewer.panorama == PANO_20230925_102642){
+}
+
+if(viewer.panorama == PANO1){
+}
+
+if(viewer.panorama == jalansamping){
+ShowMyInfospot(infospotjalansamping2, 'infospotjalansamping2');
+}
+
+if(viewer.panorama == simpangbelakang){
+ShowMyInfospot(infospotsimpangbelakang4, 'infospotsimpangbelakang4');
+}
+
+if(viewer.panorama == Ruang2){
+}
+
+if(viewer.panorama == Ruang3){
+}
+
+if(viewer.panorama == jalanbelakang){
+}
+
+if(viewer.panorama == Ruang4){
+}
+
+if(viewer.panorama == belakang){
+}
+/*viewerupdatecallback-end*/
+				
+				
+			});
+			
+			
+			
+			var hotspotsvisible = true;
+			function ShowMyInfospot(hs, elid){
+				var thehs = toScreenPosition(hs);
+				if(thehs.z < 1){
+					$("#" + elid).css({
+						"top" : (thehs.y - ($("#" + elid).height()/2)) + "px",
+						"left" : (thehs.x - ($("#" + elid).width()/2)) + "px",
+					});
+					if(hotspotsvisible)
+						$("#" + elid).show();
+				}else{
+					$("#" + elid).hide();
+				}
+				
+			}
+			
+			function toScreenPosition(obj)
+			{
+				var vector = new THREE.Vector3();
+				var widthHalf = 0.5 * innerWidth;
+				var heightHalf = 0.5 * innerHeight;
+				
+				//obj.updateMatrixWorld();				
+				vector.setFromMatrixPosition(obj.matrixWorld);
+				
+				
+				vector.project(viewer.camera);
+
+				vector.x = ( vector.x * widthHalf ) + widthHalf;
+				vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+				
+				return { 
+					x: vector.x,
+					y: vector.y,
+					z: vector.z,
+				};
+
+			};
+			
+			var currentPanorama;
+			function ChangePanorama(panorama){
+				currentPanorama = panorama;
+				HideInfospots(); 
+				$("#loading").fadeIn();
+				//$(".customhotspot").fadeOut();
+				setTimeout(function(){
+					viewer.setPanorama(window[panorama]);
+				}, 100);
+				setTimeout(function(){
+					$("#" + panorama).fadeIn();
+					$("#loading").fadeOut();
+				}, 1000);
+				
+			}
+			
+			
+			
+			function HideInfospots(){
+				$(".customhotspot").fadeOut();
+			}
+
+			/*customjs*/
+function chclickinfospotjalansamping2(){ 
+var deskripsi = "Patung-patung Lohan berwarna emas tersebut dibuat dengan cita rasa seni yang begitu tinggi dengan gestur yang mewakili karakternya masing-masing. Ke-18 patung Lohan tersebut antara lain, Nantimiloto, Angida, Pindola, Pantha The Elder, Asita, Nagasane, Pantha The Younger, Rahula, Gobaka, Nakula, Vanavasa, Fajraputra, Bodhidarma, Katikam Nadimitra, Kanaka The Bharadavaja, The Vatsa, dan Pindola The Bharadavaja. Patung-patung Lohan tersebut menjadi sangat menarik dengan latar belakang keindahan Gunung Lokon yang memukau.";
+alert(deskripsi);
+}
+
+function chclickinfospotsimpangbelakang4(){ 
+var deskripsi = "Pada kolam yang dipercaya mampu mendatangkan keberuntungan dan rejeki ini, dihiasi dengan patung katak raksasa berkepala naga yang menyimbolkan keberuntungan. Pada sisi-sisi kolam terdapat prasasti yang bertuliskan segala kebaikan duniawi, seperti panjang umur, pangkat, harta, keberuntungan, dan bahagia. Umat Buddha yang datang biasanya akan melemparkan koin ke dalam kolam sebelum kemudian memanjatkan doa dan permohonan.";alert(deskripsi);
+}
+/*customjs-end*/
+        </script>
+	</body>
+</html>body>
+</html>

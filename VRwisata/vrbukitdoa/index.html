@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<!--projecttitle--><title>bukit doa</title><!--projecttitle-end-->
+		<!--projectdescription--><meta name="description" content="Virtual tour Bukit Doa"><!--projectdescription-end-->
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		<meta charset="utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width, shrink-to-fit=no">
+		
+		<link rel="stylesheet" type="text/css" href="css/font-awesome.css">
+		<link rel="stylesheet" type="text/css" href="style.css">
+		
+		<!-- Insert this line above script imports  -->
+		<script>if (typeof module === 'object') {window.module = module; module = undefined;}</script>
+		
+		<script src="imagedata.js"></script>
+		<script src="jquery.js"></script>
+		<script src="three.min.js"></script>
+		<script src="panolens.min.js"></script>
+		
+		<!-- Insert this line after script imports -->
+		<script>if (window.module) module = window.module;</script>
+		
+		<style>
+		
+			
+						
+			/* SCROLLBAR STYLING */
+			/* width */
+			::-webkit-scrollbar {
+				width: 0.25em;
+				height: 0.25em;
+			}
+			/* Track */
+			::-webkit-scrollbar-track {
+				background: #2c3643; 
+			}
+			/* Handle */
+			::-webkit-scrollbar-thumb {
+				background: #0d9e59; 
+				transition: background .5s;
+			}
+			/* Handle on hover */
+			::-webkit-scrollbar-thumb:hover {
+				background: #00e075; 
+			}
+
+
+			html, body {
+				margin: 0;
+				width: 100%;
+				height: 100%;
+				overflow: hidden;
+				background-color: #000;
+				color; black;
+			}
+
+			a:link, a:visited{
+				color: #bdc3c7;	
+			}
+
+			.fullwrapper{
+				position: fixed;
+				top: 0;
+				left: 0;
+				right: 0;
+				bottom: 0;
+				background-color: black;
+			}
+			
+			#container {
+                width: 100%;
+                height: 100%;
+            }
+			
+			#tmp{
+				position: fixed;
+				top: 0;
+				left: 0; 
+				right: 0;
+				bottom: 0;
+				padding: 3em;
+				background-color: rgba(0,0,0,.5);
+				backdrop-filter: blur(5px);
+				display: none;
+			}
+		</style>
+	</head>
+	<body id="body">
+	    <div id="container" style="color: black;"></div>
+    	
+		
+		
+		<!--customhtml--><div class='customhotspot' id='awal'></div><div class='customhotspot' id='parkiran'><div onclick='chclickinfospotparkiran1();' id='infospotparkiran1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='penginapan'><div onclick='chclickinfospotpenginapan1();' id='infospotpenginapan1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='awalbelakang'></div><div class='customhotspot' id='depangereja'><div onclick='chclickinfospotdepangereja2();' id='infospotdepangereja2' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='depangcafe'><div onclick='chclickinfospotdepangcafe3();' id='infospotdepangcafe3' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='belakanggereja'></div><div class='customhotspot' id='belakng'><div onclick='chclickinfospotbelakng1();' id='infospotbelakng1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><div class='customhotspot' id='panggung'><div onclick='chclickinfospotpanggung1();' id='infospotpanggung1' style='position: fixed; top: 0; left: 0; cursor: pointer;'><img src='customhotspots/ikon.png' style='width: 64px; height: 64px;'></div></div><!--customhtml-end-->
+		
+		<div id="tmp">
+			<div style="width: 100%; height: 100%; overflow: hidden; overflow-y: auto; box-sizing: border-box; position: relative;" id="tmpcontent"></div>
+			<div class="mediaclosebutton" onclick="hideTemp()"><i class="fa fa-times-circle"></i></div>
+		</div>
+
+		<div id="loading" class="fullwrapper" style="display: table; width: 100%; height: 100%;">
+    		<div style="display: table-cell; vertical-align: middle; text-align: center; color: white; font-size: 30px; padding: 50px;">
+    			<!--loadingtext-->Loading...<!--loadingtext-end-->
+    		</div>
+    	</div>
+		
+    	<script>
+			
+            var container = document.querySelector( '#container' );
+			/*panolens*/
+var viewer = new PANOLENS.Viewer( { container: container , controlBar: false,  output: 'console' , autoHideInfospot: false, } );
+/*panolens-end*/
+			
+			viewer.addUpdateCallback(function(){});
+			
+			/*panoramas*/
+var awal = new PANOLENS.ImagePanorama( "panoramas/awal.jpg" );
+			awal.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			awal.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			awal.addEventListener('click', function(e){
+			});
+
+var infospotawal0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawal0.position.set( -364.50, 227.97, -4971.94 );
+					awal.add(infospotawal0);
+infospotawal0.addEventListener('click', function(){
+ChangePanorama('parkiran');
+});
+var infospotawal1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawal1.position.set( 4898.72, 956.16, -97.56 );
+					awal.add(infospotawal1);
+infospotawal1.addEventListener('click', function(){
+ChangePanorama('awalbelakang');
+});
+var infospotawal2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawal2.position.set( 2584.33, 788.65, 4200.52 );
+					awal.add(infospotawal2);
+infospotawal2.addEventListener('click', function(){
+ChangePanorama('penginapan');
+});
+viewer.add( awal );
+var parkiran = new PANOLENS.ImagePanorama( "panoramas/parkiran.jpg" );
+			parkiran.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			parkiran.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			parkiran.addEventListener('click', function(e){
+			});
+
+var infospotparkiran0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotparkiran0.position.set( -4973.08, 215.96, 351.69 );
+					parkiran.add(infospotparkiran0);
+infospotparkiran0.addEventListener('click', function(){
+ChangePanorama('awal');
+});
+var infospotparkiran1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotparkiran1.position.set( -3469.81, -281.80, -3575.93 );
+					infospotparkiran1.visible = false;
+					parkiran.add(infospotparkiran1);
+infospotparkiran1.addEventListener('click', function(){
+alert("Area Pakiran");
+});
+viewer.add( parkiran );
+var penginapan = new PANOLENS.ImagePanorama( "panoramas/penginapan.jpg" );
+			penginapan.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			penginapan.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			penginapan.addEventListener('click', function(e){
+			});
+
+var infospotpenginapan0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotpenginapan0.position.set( -3231.02, 52.76, 3805.89 );
+					penginapan.add(infospotpenginapan0);
+infospotpenginapan0.addEventListener('click', function(){
+ChangePanorama('awal');
+});
+var infospotpenginapan1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotpenginapan1.position.set( 2339.91, 936.31, -4308.34 );
+					infospotpenginapan1.visible = false;
+					penginapan.add(infospotpenginapan1);
+infospotpenginapan1.addEventListener('click', function(){
+alert("Penginapan");
+});
+viewer.add( penginapan );
+var awalbelakang = new PANOLENS.ImagePanorama( "panoramas/awalbelakang.jpg" );
+			awalbelakang.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			awalbelakang.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			awalbelakang.addEventListener('click', function(e){
+			});
+
+var infospotawalbelakang0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawalbelakang0.position.set( -4956.68, 430.39, 446.43 );
+					awalbelakang.add(infospotawalbelakang0);
+infospotawalbelakang0.addEventListener('click', function(){
+ChangePanorama('awal');
+});
+var infospotawalbelakang1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawalbelakang1.position.set( -2430.49, -302.07, -4352.24 );
+					awalbelakang.add(infospotawalbelakang1);
+infospotawalbelakang1.addEventListener('click', function(){
+ChangePanorama('depangereja');
+});
+var infospotawalbelakang2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotawalbelakang2.position.set( 4943.58, 284.84, 634.47 );
+					awalbelakang.add(infospotawalbelakang2);
+infospotawalbelakang2.addEventListener('click', function(){
+ChangePanorama('depangcafe');
+});
+viewer.add( awalbelakang );
+var depangereja = new PANOLENS.ImagePanorama( "panoramas/depangereja.jpg" );
+			depangereja.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			depangereja.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			depangereja.addEventListener('click', function(e){
+			});
+
+var infospotdepangereja0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotdepangereja0.position.set( 4816.55, 464.51, -1223.97 );
+					depangereja.add(infospotdepangereja0);
+infospotdepangereja0.addEventListener('click', function(){
+ChangePanorama('awalbelakang');
+});
+var infospotdepangereja1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotdepangereja1.position.set( -4586.92, -638.29, 1859.59 );
+					depangereja.add(infospotdepangereja1);
+infospotdepangereja1.addEventListener('click', function(){
+ChangePanorama('belakanggereja');
+});
+var infospotdepangereja2 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotdepangereja2.position.set( 2680.55, 385.00, 4194.86 );
+					infospotdepangereja2.visible = false;
+					depangereja.add(infospotdepangereja2);
+infospotdepangereja2.addEventListener('click', function(){
+var deskripsi = "Chapel of Mother Mary di Tomohon adalah sebuah gereja kecil yang terletak di kota Tomohon, Sulawesi Utara, Indonesia. Gereja ini terkenal karena arsitektur uniknya yang menyerupai topi tradisional Minahasa yang disebut Kaweng. Gereja ini menjadi salah satu landmark populer di Tomohon dan sering dikunjungi oleh wisatawan serta umat Katolik untuk beribadah dan berdoa.";
+alert(deskripsi);
+
+});
+viewer.add( depangereja );
+var depangcafe = new PANOLENS.ImagePanorama( "panoramas/depangcafe.jpg" );
+			depangcafe.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			depangcafe.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			depangcafe.addEventListener('click', function(e){
+			});
+
+var infospotdepangcafe0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotdepangcafe0.position.set( -4781.06, 405.08, 1383.56 );
+					depangcafe.add(infospotdepangcafe0);
+infospotdepangcafe0.addEventListener('click', function(){
+ChangePanorama('panggung');
+});
+var infospotdepangcafe1 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotdepangcafe1.position.set( -1357.52, -35.45, 4804.10 );
+					depangcafe.add(infospotdepangcafe1);
+infospotdepangcafe1.addEventListener('click', function(){
+ChangePanorama('awalbelakang');
+});
+var infospotdepangcafe2 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotdepangcafe2.position.set( 471.04, -181.06, -4968.20 );
+					depangcafe.add(infospotdepangcafe2);
+infospotdepangcafe2.addEventListener('click', function(){
+ChangePanorama('belakng');
+});
+var infospotdepangcafe3 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotdepangcafe3.position.set( 3991.96, 611.52, 2938.90 );
+					infospotdepangcafe3.visible = false;
+					depangcafe.add(infospotdepangcafe3);
+infospotdepangcafe3.addEventListener('click', function(){
+alert("Cafe&Resto");
+});
+viewer.add( depangcafe );
+var belakanggereja = new PANOLENS.ImagePanorama( "panoramas/belakanggereja.jpg" );
+			belakanggereja.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			belakanggereja.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			belakanggereja.addEventListener('click', function(e){
+			});
+
+var infospotbelakanggereja0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotbelakanggereja0.position.set( 2399.21, 87.97, -4377.61 );
+					belakanggereja.add(infospotbelakanggereja0);
+infospotbelakanggereja0.addEventListener('click', function(){
+ChangePanorama('depangereja');
+});
+viewer.add( belakanggereja );
+var belakng = new PANOLENS.ImagePanorama( "panoramas/belakng.jpg" );
+			belakng.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			belakng.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			belakng.addEventListener('click', function(e){
+			});
+
+var infospotbelakng0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotbelakng0.position.set( -559.72, 164.11, 4960.22 );
+					belakng.add(infospotbelakng0);
+infospotbelakng0.addEventListener('click', function(){
+ChangePanorama('depangcafe');
+});
+var infospotbelakng1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotbelakng1.position.set( 4952.56, 658.98, 8.79 );
+					infospotbelakng1.visible = false;
+					belakng.add(infospotbelakng1);
+infospotbelakng1.addEventListener('click', function(){
+var deskripsi = "Gua Maria di Indonesia umumnya berupa tempat ziarah dengan makna historis bagi perkembangan Gereja Katolik di Indonesia ataupun Gereja Katolik setempat. Bangunan utamanya dibentuk seperti gua tetapi ada juga yang berada pada gua alam asli. Disebut Gua Maria karena ditempatkannya patung Bunda Maria, ibunda Yesus, di gua tersebut. Tempat itu kemudian menjadi tempat ziarah umat Katolik untuk mendekatkan diri pada Allah Bapa dengan berdoa melalui perantaraan Bunda Maria dan Yesus Kristus. ";alert("deskripsi");
+});
+viewer.add( belakng );
+var panggung = new PANOLENS.ImagePanorama( "panoramas/panggung.jpg" );
+			panggung.addEventListener('progress', function(e){
+				$("#loading").show();
+			});
+			panggung.addEventListener('load', function(e){
+				//$("#loading").fadeOut();
+			});
+			panggung.addEventListener('click', function(e){
+			});
+
+var infospotpanggung0 = new PANOLENS.Infospot( 512, hotspotIcons[6].data, true );
+					infospotpanggung0.position.set( 706.63, 1337.68, -4755.18 );
+					panggung.add(infospotpanggung0);
+infospotpanggung0.addEventListener('click', function(){
+ChangePanorama('depangcafe');
+});
+var infospotpanggung1 = new PANOLENS.Infospot( 512, hotspotIcons[0].data, true );
+					infospotpanggung1.position.set( 4988.02, -81.00, 167.80 );
+					infospotpanggung1.visible = false;
+					panggung.add(infospotpanggung1);
+infospotpanggung1.addEventListener('click', function(){
+var deskripsi = "Amphitheater Woloan dibangun pada tahun 2004, tempat ini memiliki sebuah perpustakaan yang menyimpan banyak sejarah tentang Woloan dan Minahasa. Dari tempat ini, kamu bisa menyaksikan pemandangan Gunung Lakon yang sangat indah dan menarik. Di Amphitheater Woloan ini terdapat adanya bangunan megah layaknya sebuah panggung pentas zaman dahulu. Biasanya destinasi wisata ini dijadikan sebagai lokasi peragaan teater oleh penduduk Minahasa";
+alert(deskripsi);
+
+});
+viewer.add( panggung );
+$(document).ready(function(){ ChangePanorama('awal'); });
+
+/*panoramas-end*/
+            
+			
+			function hideTemp(){
+				$("#tmp").fadeOut();
+				setTimeout(function(){
+					$("#tmpcontent").html("");
+				},1000);
+			}
+			
+			function showMedia(type, content){
+				switch(type){
+					case 1 :
+						//Image
+						$("#tmpcontent").html("<img src='"+content+"' style='width: 100%;'>");
+						$("#tmp").fadeIn();
+						break;
+					case 2 :
+						//Video
+						$("#tmpcontent").html("<video id='webvideo' controls autoplay style='width: 100%; height: 100%;'><source src='" +content+ "' type='video/mp4'> Your browser does not support the video tag. </video>");
+						$("#tmp").fadeIn();
+						break;
+					case 3 :
+						//Audio
+						$("#tmpcontent").html("<audio controls style='width: 100%;'><source src='"+content+"' type='audio/ogg'>Your browser does not support the audio tag.</audio>");
+						$("#tmp").fadeIn();
+						break;
+					case 4 :
+						//PDF
+						$("#tmpcontent").html("<iframe src='pdfjs/web/viewer.html?file=../../"+content+"' style='width: 100%; height: 99%;'></iframe>");
+						$("#tmp").fadeIn();
+						break;
+				}
+			}
+			
+			
+			
+			//Update Callback
+			viewer.addUpdateCallback(function(){
+				
+				/*viewerupdatecallback*/
+if(viewer.panorama == awal){
+}
+
+if(viewer.panorama == parkiran){
+ShowMyInfospot(infospotparkiran1, 'infospotparkiran1');
+}
+
+if(viewer.panorama == penginapan){
+ShowMyInfospot(infospotpenginapan1, 'infospotpenginapan1');
+}
+
+if(viewer.panorama == awalbelakang){
+}
+
+if(viewer.panorama == depangereja){
+ShowMyInfospot(infospotdepangereja2, 'infospotdepangereja2');
+}
+
+if(viewer.panorama == depangcafe){
+ShowMyInfospot(infospotdepangcafe3, 'infospotdepangcafe3');
+}
+
+if(viewer.panorama == belakanggereja){
+}
+
+if(viewer.panorama == belakng){
+ShowMyInfospot(infospotbelakng1, 'infospotbelakng1');
+}
+
+if(viewer.panorama == panggung){
+ShowMyInfospot(infospotpanggung1, 'infospotpanggung1');
+}
+/*viewerupdatecallback-end*/
+				
+				
+			});
+			
+			
+			
+			var hotspotsvisible = true;
+			function ShowMyInfospot(hs, elid){
+				var thehs = toScreenPosition(hs);
+				if(thehs.z < 1){
+					$("#" + elid).css({
+						"top" : (thehs.y - ($("#" + elid).height()/2)) + "px",
+						"left" : (thehs.x - ($("#" + elid).width()/2)) + "px",
+					});
+					if(hotspotsvisible)
+						$("#" + elid).show();
+				}else{
+					$("#" + elid).hide();
+				}
+				
+			}
+			
+			function toScreenPosition(obj)
+			{
+				var vector = new THREE.Vector3();
+				var widthHalf = 0.5 * innerWidth;
+				var heightHalf = 0.5 * innerHeight;
+				
+				//obj.updateMatrixWorld();				
+				vector.setFromMatrixPosition(obj.matrixWorld);
+				
+				
+				vector.project(viewer.camera);
+
+				vector.x = ( vector.x * widthHalf ) + widthHalf;
+				vector.y = - ( vector.y * heightHalf ) + heightHalf;
+
+				
+				return { 
+					x: vector.x,
+					y: vector.y,
+					z: vector.z,
+				};
+
+			};
+			
+			var currentPanorama;
+			function ChangePanorama(panorama){
+				currentPanorama = panorama;
+				HideInfospots(); 
+				$("#loading").fadeIn();
+				//$(".customhotspot").fadeOut();
+				setTimeout(function(){
+					viewer.setPanorama(window[panorama]);
+				}, 100);
+				setTimeout(function(){
+					$("#" + panorama).fadeIn();
+					$("#loading").fadeOut();
+				}, 1000);
+				
+			}
+			
+			
+			
+			function HideInfospots(){
+				$(".customhotspot").fadeOut();
+			}
+
+			/*customjs*/
+function chclickinfospotparkiran1(){ 
+alert("Area Pakiran");
+}
+
+function chclickinfospotpenginapan1(){ 
+alert("Penginapan");
+}
+
+function chclickinfospotdepangereja2(){ 
+var deskripsi = "Chapel of Mother Mary di Tomohon adalah sebuah gereja kecil yang terletak di kota Tomohon, Sulawesi Utara, Indonesia. Gereja ini terkenal karena arsitektur uniknya yang menyerupai topi tradisional Minahasa yang disebut Kaweng. Gereja ini menjadi salah satu landmark populer di Tomohon dan sering dikunjungi oleh wisatawan serta umat Katolik untuk beribadah dan berdoa.";
+alert(deskripsi);
+
+}
+
+function chclickinfospotdepangcafe3(){ 
+alert("Cafe&Resto");
+}
+
+function chclickinfospotbelakng1(){ 
+var deskripsi = "Gua Maria di Indonesia umumnya berupa tempat ziarah dengan makna historis bagi perkembangan Gereja Katolik di Indonesia ataupun Gereja Katolik setempat. Bangunan utamanya dibentuk seperti gua tetapi ada juga yang berada pada gua alam asli. Disebut Gua Maria karena ditempatkannya patung Bunda Maria, ibunda Yesus, di gua tersebut. Tempat itu kemudian menjadi tempat ziarah umat Katolik untuk mendekatkan diri pada Allah Bapa dengan berdoa melalui perantaraan Bunda Maria dan Yesus Kristus. ";alert("deskripsi");
+}
+
+function chclickinfospotpanggung1(){ 
+var deskripsi = "Amphitheater Woloan dibangun pada tahun 2004, tempat ini memiliki sebuah perpustakaan yang menyimpan banyak sejarah tentang Woloan dan Minahasa. Dari tempat ini, kamu bisa menyaksikan pemandangan Gunung Lakon yang sangat indah dan menarik. Di Amphitheater Woloan ini terdapat adanya bangunan megah layaknya sebuah panggung pentas zaman dahulu. Biasanya destinasi wisata ini dijadikan sebagai lokasi peragaan teater oleh penduduk Minahasa";
+alert(deskripsi);
+
+}
+/*customjs-end*/
+        </script>
+	</body>
+</html>
